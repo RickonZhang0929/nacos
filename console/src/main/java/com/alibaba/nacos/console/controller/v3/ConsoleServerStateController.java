@@ -21,6 +21,7 @@ import com.alibaba.nacos.api.model.v2.Result;
 import com.alibaba.nacos.console.paramcheck.ConsoleDefaultHttpParamExtractor;
 import com.alibaba.nacos.console.proxy.ServerStateProxy;
 import com.alibaba.nacos.core.paramcheck.ExtractorManager;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,9 +51,9 @@ public class ConsoleServerStateController {
      * @return state json.
      */
     @GetMapping("/state")
-    public Result<Map<String, String>> serverState() {
+    public ResponseEntity<Map<String, String>> serverState() {
         Map<String, String> serverState = serverStateProxy.getServerState();
-        return Result.success(serverState);
+        return ResponseEntity.ok().body(serverState);
     }
     
     /**
